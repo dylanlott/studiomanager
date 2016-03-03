@@ -1,5 +1,5 @@
 //STUDIOKEEPER
-//definititions and requires
+//REQUIRES
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bson = require('bson');
 var app = express();
+var router = express.Router(); 
 
 //Middleware
 app.use(cors());
@@ -43,16 +44,17 @@ mongoose.connection.once('open', function() {
     console.log("Connected to db at " + mongoUri);
 });
 
-//port
+//Routes 
+app.use('/client', require('./routes/ClientRoutes'));
+app.use('/track', require('./routes/TrackRoutes'));
+
+//Port
 var port = 8080; 
 app.listen(process.env.EXPRESS_PORT || port, function(){
     console.log("The Wolverine Pack is hunting on port ", port); 
 });
 
-//static 
-app.use(express.static(__dirname+'/public'));
-
-//local login
+//Local Login
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
@@ -73,7 +75,7 @@ passport.use(new LocalStrategy({
     });
 }));
 
-//authorization check
+//Authorization
 var requireAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
         return res.status(403).send({message: "Logged In"   }).end();
@@ -81,7 +83,7 @@ var requireAuth = function(req, res, next) {
     return next();
 }
 
-//deserializer
+//Deserializer
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
