@@ -26,8 +26,6 @@ app.use(passport.session());
 
 //Controllers 
 var UserCtrl = require('./controllers/UserCtrl');
-var LocationCtrl = require('./controllers/LocationCtrl');
-var StatsCtrl = require('./controllers/StatsCtrl'); 
 
 //Models
 var User = require('./models/User');
@@ -35,7 +33,7 @@ var Location = require('./models/Location');
 var Client = require('./models/Client');
 var Project = require('./models/Project'); 
 var Gear = require('./models/Gear'); 
-var Track = require('./models/Track.js'); 
+var Track = require('./models/Track'); 
 
 //Database
 var mongoUri = "mongodb://localhost:27017/studiokeeper";
@@ -47,6 +45,10 @@ mongoose.connection.once('open', function() {
 //Routes 
 app.use('/client', require('./routes/ClientRoutes'));
 app.use('/track', require('./routes/TrackRoutes'));
+app.use('/project', require('./routes/ProjectRoutes'));
+app.use('/gear', require('./routes/GearRoutes'));
+app.use('/location', require('./routes/LocationRoutes'));
+
 
 //Port
 var port = 8080; 
