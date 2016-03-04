@@ -1,10 +1,24 @@
-![fashionphileLogo](https://raw.githubusercontent.com/realwolverines/fashionphile/master/public/assets/img/logo-dark.png "fashionphileLogo")
----
+# STUDIOKEEPER 
+## The best way for DIY studios to manage their projects. 
 
-### Digital Concierge Service | Wolverines Inc.
+## Users 
 
-A MEAN stack application providing Fashionphile employees and customers a streamlined shopping experience.
+GET `/users/all` 
+Returns all users 
 
----
+POST '/users'
+Create a new user 
+{
+"username": yourusername,
+"password": yourpassword
+}
 
-With a dedicated iPad interface, in-store monitoring, and easy access to vital business metrics, the digital concierge service from Wolverines Inc., is the future of customer service.
+POST `/users/auth/`
+takes a user object 
+{
+"username": yourusername, 
+"password": yourpassword 
+}
+
+
+

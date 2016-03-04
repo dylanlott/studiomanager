@@ -48,7 +48,7 @@ app.use('/track', require('./routes/TrackRoutes'));
 app.use('/project', require('./routes/ProjectRoutes'));
 app.use('/gear', require('./routes/GearRoutes'));
 app.use('/location', require('./routes/LocationRoutes'));
-
+app.use('/users', require('./routes/UserRoutes')); 
 
 //Port
 var port = 8080; 
