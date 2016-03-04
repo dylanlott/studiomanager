@@ -99,8 +99,8 @@ passport.deserializeUser(function(id, done) {
 /* Endpoints 
 **********************************************************************/
 //Auth
-app.post('/api/users/', UserCtrl.createUser);
-app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
+app.post('/users', UserCtrl.createUser);
+app.post('/users/auth', passport.authenticate('local'), function(req, res) {
     console.log("Logged In"); 
     return res.status(200).end();
 });

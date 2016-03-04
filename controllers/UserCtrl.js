@@ -25,6 +25,19 @@ module.exports = {
           res.json(new_user);
         })
     })
+  },
+
+  getAllUsers: function(req, res){
+    console.log("get all users activated"); 
+    User.find({}, function(err, users){
+      if(err){
+        console.log("Error getting users. ", err); 
+        return res.status(500).end(); 
+      }else{
+        res.status(200).json(users); 
+      }
+
+    })
   }
 
 }
