@@ -3,8 +3,10 @@ var Client = require('../models/Client.js');
 module.exports = {
 
   add: function(req, res){
+    console.log("add client req.body ", req.body); 
+    console.log("add client req.user ", req.user); 
     var newClient = new Client(req.body);
-
+    newClient.owner = req.user._id;
     newClient.save(function(err, newClient){
       console.log("New client data ", newClient); 
       if(err){
@@ -15,5 +17,4 @@ module.exports = {
       }
     })
   }
-
 }

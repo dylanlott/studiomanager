@@ -38,6 +38,11 @@ module.exports = {
       }
 
     })
+  },
+
+  getUser: function(req, res){
+    console.log("getUser activated"); 
+    return req.user; 
   }
 
 }

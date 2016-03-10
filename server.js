@@ -102,7 +102,8 @@ passport.deserializeUser(function(id, done) {
 app.post('/users', UserCtrl.createUser);
 app.post('/users/auth', passport.authenticate('local'), function(req, res) {
     console.log("Logged In"); 
-    return res.status(200).end();
+    return res.status(200).json(req.user).end();
 });
+app.get('/user', UserCtrl.getUser); 
 
 

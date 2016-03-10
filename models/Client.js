@@ -12,7 +12,8 @@ var  clientModel = new Schema({
   	default: "open"
   },
   location: {type: String},
-  active: {type: Boolean, default: true}
+  active: {type: Boolean, default: true},
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
 module.exports = mongoose.model('Client', clientModel);

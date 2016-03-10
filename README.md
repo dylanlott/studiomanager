@@ -3,7 +3,7 @@
 
 ## Users
 
-### `GET /users/all` 
+### GET `/users/all` 
 	Returns all users 
 	[
   {
@@ -13,14 +13,14 @@
     "__v": 0
   }	]
 
-### `POST /users`
+### POST `/users`
 	Create a new user 
 	{
 	    "email":"dylan@bandforgeapp.com", 
 	    "password":"password"
 	}
 
-### `POST /users/auth/`
+### POST `/users/auth/`
 takes a user object 
 	{
 	    "email":"dylan@bandforgeapp.com", 
@@ -30,7 +30,7 @@ takes a user object
 ## Client 
 Every User has a list of clients. To attach a new client to that user 
 
-`POST /clients/`
+POST `/clients/`
 Takes the following object: 
 ````json
 {
