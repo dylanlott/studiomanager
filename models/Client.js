@@ -8,8 +8,8 @@ var  clientModel = new Schema({
   contact_email: {type: String},
   joined: {type: Date, default: Date.now},
   status: {
-  	type: String, enum: ["payment_pending", "paid", "cancelled", "done"], 
-  	default: "pending"
+  	type: String, enum: ["payment_pending", "paid", "cancelled", "done", "open"], 
+  	default: "open"
   },
   location: {type: String},
   active: {type: Boolean, default: true}
