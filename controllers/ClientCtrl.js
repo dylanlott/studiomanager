@@ -43,5 +43,19 @@ module.exports = {
         }
         return res.status(200).json(client).end(); 
       })
+  },
+
+  delete: function(req, res){
+    console.log("Remove client: ", req.params.id); 
+    Client
+      .findByIdAndRemove(req.params.id)
+      .then(function(client, err){
+        if(err){
+          console.log("Error deleting client: ", err); 
+          return res.status(500).end(); 
+        }else{
+          return res.status(200).json(client).end(); 
+        }
+      })
   }
 }
