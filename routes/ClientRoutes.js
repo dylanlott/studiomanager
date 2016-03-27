@@ -3,14 +3,10 @@ module.exports = function(){
   var app = express();
   var client = require('../controllers/ClientCtrl.js');
 
-  //### '/client/'
+  //### PREFIXED '/client/'
 
-  app.get('/', function(req, res){
-
-  });
-  app.get('/:id', function(req, res){
-
-  });
+  app.get('/', client.list);
+  app.get('/:id', client.getOne);
   app.post('/', client.add);
 
   app.put('/:id', function(req, res){

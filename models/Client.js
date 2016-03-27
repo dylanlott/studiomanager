@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var moment = require('moment'); 
 
 var  clientModel = new Schema({
-  contact_name: {type: String, required: true},
+  contact_name: {type: String},
   contact_email: {type: String},
   joined: {type: Date, default: Date.now},
   status: {

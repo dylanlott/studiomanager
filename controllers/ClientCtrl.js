@@ -16,5 +16,32 @@ module.exports = {
         res.status(200).json(newClient).end(); 
       }
     })
+  },
+
+  list: function(req, res){
+    console.log("List Clients Req user", req.user); 
+    Client
+      .find({owner: req.user._id})
+      .exec()
+      .then(function(clients, err){
+        if(err){
+          console.log("Error getting clients: ", err); 
+        }
+        return res.status(200).json(clients).end(); 
+      })
+  },
+
+  getOne: function(req, res){
+    console.log("Get one client ctrl hit"); 
+    console.log("client id ", req.params.id); 
+    Client
+      .findById(req.params.id)
+      .then(function(client, err){
+        if(err){
+          console.log("Error getting client", err); 
+          return res.status(500).end(); 
+        }
+        return res.status(200).json(client).end(); 
+      })
   }
 }
