@@ -57,5 +57,19 @@ module.exports = {
           return res.status(200).json(client).end(); 
         }
       })
+  },
+
+  update: function(req, res){
+    console.log("update client id", req.params.id); 
+    console.log("update client: ", req.body); 
+    Client
+      .findByIdAndUpdate(req.params.id, req.body)
+      .then(function(client, err){
+        if(err){
+          return res.status(500).end(); 
+        }else{
+          return res.status(200).json(client).end(); 
+        }
+      }
   }
 }
