@@ -1,6 +1,7 @@
 module.exports = function(){
   var express = require('express');
   var app = express();
+  var project = require('../controllers/ProjectCtrl.js'); 
 
   app.get('/', function(req, res){
 
@@ -8,9 +9,7 @@ module.exports = function(){
   app.get('/:id', function(req, res){
   	
   });
-  app.post('/', function(req, res){
-  	
-  });
+  app.post('/', project.add);
   app.put('/:id', function(req, res){
   	
   });
