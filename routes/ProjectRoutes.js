@@ -3,9 +3,9 @@ module.exports = function(){
   var app = express();
   var project = require('../controllers/ProjectCtrl.js'); 
 
-  app.get('/', function(req, res){
-
-  });
+  // Prefixed by '/project'
+  
+  app.get('/', project.list);
   app.get('/:id', function(req, res){
   	
   });

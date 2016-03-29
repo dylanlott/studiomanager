@@ -56,6 +56,33 @@ and will return
 ````
 
 
+### POST `/project/`
+Takes this object 
+
+````
+{
+    "name":"Hard Luck Final Album",
+    "date_created":"06/12/2015",
+    "date_started":"06/12/2015",
+    "due_date":"06/12/2016"
+}
+````
+and will return 
+````
+{
+  "__v": 0,
+  "owner": "56f8623bf02c6c3a50b9edff",
+  "project_lead": "56f8623bf02c6c3a50b9edff",
+  "name": "Hard Luck Final Album",
+  "due_date": "2016-06-12T06:00:00.000Z",
+  "_id": "56f9ff0b06709472037954c0",
+  "track_listing": [],
+  "engineers": [],
+  "date_started": "2015-06-12T06:00:00.000Z",
+  "date_created": "2015-06-12T06:00:00.000Z"
+}
+````
+After creating a project, you can then go and assign project leads, engineers, and setup tracks for that project. 
 
 
 
