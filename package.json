@@ -1,7 +1,7 @@
 {
-  "name": "fashionphile",
+  "name": "studiomanager",
   "version": "1.0.0",
-  "description": "Fashionphile Queue System",
+  "description": "Studio Management System",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BryanSmith33/fashionphile.git"
+    "url": "https://github.com/dylanlott/studiomanager.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BryanSmith33/fashionphile/issues"
+    "url": "https://github.com/dylanlott/studiomanager/issues"
   },
-  "homepage": "https://github.com/BryanSmith33/fashionphile",
+  "homepage": "https://github.com/dylanlott/studiomanager",
   "dependencies": {
     "bcryptjs": "^2.1.0",
     "body-parser": "^1.12.4",
