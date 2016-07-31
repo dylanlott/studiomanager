@@ -1,10 +1,12 @@
-# STUDIOKEEPER 
-## The best way for DIY studios to manage their projects. 
+# STUDIOKEEPER
+## The best way for DIY studios to manage their projects.
 
 ## Users
 
-### GET `/users/all` 
-	Returns all users 
+### GET `/users/all`
+	Returns all users
+
+````json
 	[
   {
     "_id": "56e106752457fbe02bde7b8f",
@@ -12,37 +14,43 @@
     "password": "$2a$10$OVqU/e5XfxeDCVChFy4ceehRby1xEyMDBcs6n2RHDn50Mqw4zhtAe",
     "__v": 0
   }	]
+````
 
 ### POST `/users`
-	Create a new user 
+	Create a new user
+````json
 	{
-	    "email":"dylan@bandforgeapp.com", 
+	    "email":"dylan@bandforgeapp.com",
 	    "password":"password"
 	}
+````
+
 
 ### POST `/users/auth/`
-takes a user object 
+takes a user object
+````json
 	{
-	    "email":"dylan@bandforgeapp.com", 
+	    "email":"dylan@bandforgeapp.com",
 	    "password":"password"
 	}
-
-## Client 
-Every User has a list of clients. To attach a new client to that user 
+````
+## Client
+Every User has a list of clients. To attach a new client to that user
 
 POST `/clients/`
-Takes the following object: 
+Takes the following object:
+
 ````json
 {
-    "contact_name":"Greg Long", 
-    "contact_email":"greg@watrecords.com", 
-    "status":"open", 
-    "location":"Boston", 
+    "contact_name":"Greg Long",
+    "contact_email":"greg@watrecords.com",
+    "status":"open",
+    "location":"Boston",
     "active":"true"
 }
 ````
-and will return 
-````
+and will return
+````json
 {
   "__v": 0,
   "contact_name": "Greg Long",
@@ -57,9 +65,9 @@ and will return
 
 
 ### POST `/project/`
-Takes this object 
+Takes this object
 
-````
+````json
 {
     "name":"Hard Luck Final Album",
     "date_created":"06/12/2015",
@@ -67,8 +75,9 @@ Takes this object
     "due_date":"06/12/2016"
 }
 ````
-and will return 
-````
+and will return
+
+````json
 {
   "__v": 0,
   "owner": "56f8623bf02c6c3a50b9edff",
@@ -82,8 +91,4 @@ and will return
   "date_created": "2015-06-12T06:00:00.000Z"
 }
 ````
-After creating a project, you can then go and assign project leads, engineers, and setup tracks for that project. 
-
-
-
-
+After creating a project, you can then go and assign project leads, engineers, and setup tracks for that project.
