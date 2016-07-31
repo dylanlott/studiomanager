@@ -18,6 +18,7 @@
 
 ### POST `/users`
 	Create a new user
+	
 ````json
 	{
 	    "email":"dylan@bandforgeapp.com",
