@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bson = require('bson');
 var app = express();
-var router = express.Router(); 
+var router = express.Router();
 
 //Middleware
 app.use(cors());
@@ -18,22 +18,22 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname+"/public"));
 app.use(cookieParser());
 app.use(session({
-    secret: '1d5adg36s5vf2adr7vwefgv1e46b634', 
+    secret: '1d5adg36s5vf2adr7vwefgv1e46b634',
     resave: false,
     saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Controllers 
+//Controllers
 var UserCtrl = require('./controllers/UserCtrl');
 
 //Models
 var User = require('./models/User');
 var Location = require('./models/Location');
 var Client = require('./models/Client');
-var Project = require('./models/Project'); 
-var Gear = require('./models/Gear'); 
-var Track = require('./models/Track'); 
+var Project = require('./models/Project');
+var Gear = require('./models/Gear');
+var Track = require('./models/Track');
 
 //Database
 var mongoUri = "mongodb://localhost:27017/studiokeeper";
@@ -42,18 +42,18 @@ mongoose.connection.once('open', function() {
     console.log("Connected to db at " + mongoUri);
 });
 
-//Routes 
+//Routes
 app.use('/client', require('./routes/ClientRoutes'));
 app.use('/track', require('./routes/TrackRoutes'));
 app.use('/project', require('./routes/ProjectRoutes'));
 app.use('/gear', require('./routes/GearRoutes'));
 app.use('/location', require('./routes/LocationRoutes'));
-app.use('/users', require('./routes/UserRoutes')); 
+app.use('/users', require('./routes/UserRoutes'));
 
 //Port
-var port = 8080; 
+var port = 8080;
 app.listen(process.env.EXPRESS_PORT || port, function(){
-    console.log("The Wolverine Pack is hunting on port ", port); 
+    console.log("The Wolverine Pack is hunting on port ", port);
 });
 
 //Local Login
@@ -96,14 +96,15 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-/* Endpoints 
+/* Endpoints
 **********************************************************************/
 //Auth
 app.post('/users', UserCtrl.createUser);
 app.post('/users/auth', passport.authenticate('local'), function(req, res) {
-    console.log("Logged In"); 
+    console.log("Logged In");
     return res.status(200).json(req.user).end();
 });
-app.get('/user', UserCtrl.getUser); 
+app.get('/user', UserCtrl.getUser);
 
-
+//export app for server testing 
+module.exports = app;
