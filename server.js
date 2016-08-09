@@ -15,12 +15,13 @@ var router = express.Router();
 //Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(__dirname+"/public"));
+app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
 app.use(session({
-    secret: '1d5adg36s5vf2adr7vwefgv1e46b634',
+    secret: process.env.PASSPORT_SECRET || '1d5adg36s5vf2adr7vwefgv1e46b634',
     resave: false,
-    saveUninitialized: true }));
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -36,7 +37,7 @@ var Gear = require('./models/Gear');
 var Track = require('./models/Track');
 
 //Database
-var mongoUri = "mongodb://localhost:27017/studiokeeper";
+var mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/studiokeeper";
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', function() {
     console.log("Connected to db at " + mongoUri);
@@ -52,7 +53,7 @@ app.use('/users', require('./routes/UserRoutes'));
 
 //Port
 var port = 8080;
-app.listen(process.env.EXPRESS_PORT || port, function(){
+app.listen(process.env.EXPRESS_PORT || port, function() {
     console.log("The Wolverine Pack is hunting on port ", port);
 });
 
@@ -62,7 +63,9 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
 }, function(username, password, done) {
     console.log(username, password)
-    User.findOne({ email: username }).exec().then(function(user) {
+    User.findOne({
+        email: username
+    }).exec().then(function(user) {
         if (!user) {
             return done(null, false);
             console.log('no user');
@@ -80,24 +83,24 @@ passport.use(new LocalStrategy({
 //Authorization
 var requireAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.status(403).send({message: "Logged In"   }).end();
+        return res.status(403).end();
     }
     return next();
 }
 
 //Deserializer
 passport.serializeUser(function(user, done) {
-  done(null, user._id);
+    done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
 });
 
 /* Endpoints
-**********************************************************************/
+ **********************************************************************/
 //Auth
 app.post('/users', UserCtrl.createUser);
 app.post('/users/auth', passport.authenticate('local'), function(req, res) {
@@ -106,5 +109,5 @@ app.post('/users/auth', passport.authenticate('local'), function(req, res) {
 });
 app.get('/user', UserCtrl.getUser);
 
-//export app for server testing 
+//export app for server testing
 module.exports = app;

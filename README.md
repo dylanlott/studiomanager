@@ -1,84 +1,96 @@
 # STUDIOKEEPER
+
 ## The best way for DIY studios to manage their projects.
 
 ## Users
 
 ### GET `/users/all`
-	Returns all users
 
-````json
-	[
+```
+Returns all users
+```
+
+```json
+    [
   {
     "_id": "56e106752457fbe02bde7b8f",
     "email": "dylan@bandforgeapp.com",
     "password": "$2a$10$OVqU/e5XfxeDCVChFy4ceehRby1xEyMDBcs6n2RHDn50Mqw4zhtAe",
     "__v": 0
-  }	]
-````
+  }    ]
+```
 
 ### POST `/users`
-	Create a new user
-	
-````json
-	{
-	    "email":"dylan@bandforgeapp.com",
-	    "password":"password"
-	}
-````
 
+```
+Create a new user
+```
+
+```json
+    {
+        "email":"dylan@bandforgeapp.com",
+        "password":"password"
+    }
+```
 
 ### POST `/users/auth/`
-takes a user object
-````json
-	{
-	    "email":"dylan@bandforgeapp.com",
-	    "password":"password"
-	}
-````
+
+takes a user object to login the user
+
+```json
+    {
+        "email":"dylan@bandforgeapp.com",
+        "password":"password"
+    }
+```
+
 ## Client
+
 Every User has a list of clients. To attach a new client to that user
 
-POST `/clients/`
-Takes the following object:
+POST `/clients/` Takes the following object:
 
-````json
+```json
 {
-    "contact_name":"Greg Long",
-    "contact_email":"greg@watrecords.com",
+    "contact_name":"John Doe",
+    "contact_email":"john@doerecords.com",
     "status":"open",
     "location":"Boston",
     "active":"true"
 }
-````
+```
+
 and will return
-````json
+
+```json
 {
   "__v": 0,
-  "contact_name": "Greg Long",
-  "contact_email": "greg@watrecords.com",
+  "contact_name": "John Doe",
+  "contact_email": "john@doerecords.com",
   "location": "Boston",
   "_id": "56e10bb616d6ccb92ca41054",
   "active": true,
   "status": "open",
   "joined": "2016-03-10T05:52:54.824Z"
 }
-````
-
+```
 
 ### POST `/project/`
+
 Takes this object
 
-````json
+```json
 {
     "name":"Hard Luck Final Album",
     "date_created":"06/12/2015",
     "date_started":"06/12/2015",
     "due_date":"06/12/2016"
 }
-````
+```
+
 and will return
 
-````json
+```json
 {
   "__v": 0,
   "owner": "56f8623bf02c6c3a50b9edff",
@@ -91,5 +103,6 @@ and will return
   "date_started": "2015-06-12T06:00:00.000Z",
   "date_created": "2015-06-12T06:00:00.000Z"
 }
-````
+```
+
 After creating a project, you can then go and assign project leads, engineers, and setup tracks for that project.
