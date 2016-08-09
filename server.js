@@ -1,16 +1,16 @@
 //STUDIOKEEPER
 //REQUIRES
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var session = require('express-session');
-var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser');
-var bson = require('bson');
-var app = express();
-var router = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const bson = require('bson');
+const app = express();
+const router = express.Router();
 
 //Middleware
 app.use(cors());
@@ -26,24 +26,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Controllers
-var UserCtrl = require('./controllers/UserCtrl');
-
+const UserCtrl = require('./controllers/UserCtrl');
+const logger = require('./utils/logger');
 //Models
-var User = require('./models/User');
-var Location = require('./models/Location');
-var Client = require('./models/Client');
-var Project = require('./models/Project');
-var Gear = require('./models/Gear');
-var Track = require('./models/Track');
+const User = require('./models/User');
+const Location = require('./models/Location');
+const Client = require('./models/Client');
+const Project = require('./models/Project');
+const Gear = require('./models/Gear');
+const Track = require('./models/Track');
 
 //Database
-var mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/studiokeeper";
+const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/studiokeeper";
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', function() {
     console.log("Connected to db at " + mongoUri);
 });
 
 //Routes
+app.use(logger);
 app.use('/client', require('./routes/ClientRoutes'));
 app.use('/track', require('./routes/TrackRoutes'));
 app.use('/project', require('./routes/ProjectRoutes'));
@@ -52,7 +53,7 @@ app.use('/location', require('./routes/LocationRoutes'));
 app.use('/users', require('./routes/UserRoutes'));
 
 //Port
-var port = 8080;
+const port = 8080;
 app.listen(process.env.EXPRESS_PORT || port, function() {
     console.log("The Wolverine Pack is hunting on port ", port);
 });
@@ -81,7 +82,7 @@ passport.use(new LocalStrategy({
 }));
 
 //Authorization
-var requireAuth = function(req, res, next) {
+const requireAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
         return res.status(403).end();
     }

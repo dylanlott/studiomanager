@@ -46,6 +46,14 @@ module.exports = {
       return res.status(200).json(req.user).end();
     }
     return res.status(403).json({"message":"Not logged in."}).end();
+  },
+
+  requireAuth: function(req, res, next) {
+    if(req.isAuthenticated()) {
+      next();
+    } else {
+      return res.status(403).json({"message":"Not logged in."}).end();
+    }
   }
 
 }
