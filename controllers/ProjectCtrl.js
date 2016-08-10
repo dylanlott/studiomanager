@@ -1,25 +1,33 @@
-var Client = require('../models/Client.js');
-var Project = require('../models/Project.js')
-
+const Client = require('../models/Client');
+const Project = require('../models/Project')
+const User = require('../models/User');
 module.exports = {
 
 	add: function(req, res){
-		if(Project.findOne({name: req.body.name})){
-			res.json({"message":"Project with that name already exists."}).end();
-		}
 
-		var newProject = new Project(req.body);
-		console.log("req user project ctrl", req.user);
+		const newProject = new Project(req.body);
+		const user_id = req.user._id;
 		newProject.project_lead = req.user._id;
-		newProject.owner = req.user._id;
-		newProject.save(function(err, newProject){
-			if(err){
-				console.log("Error adding project", err);
-				return res.status(500).end();
-			}else{
-				return res.status(200).json(newProject).end();
-			}
-		})
+		newProject.owner = user_id;
+
+		newProject.save()
+			.then((project, delta) => {
+
+				console.log("Project: ", project);
+				console.log("Delta: ", delta);
+
+				User.update(
+					{ _id: user_id },
+					{$push: {projects: newProject}},
+					function(data, delta) {
+						console.log("Delta: ", delta)
+						console.log("User updated to: ", data)
+					}
+				)
+
+				res.status(201).json(newProject).end();
+
+			})
 	},
 
 	list: function(req, res){

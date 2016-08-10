@@ -10,7 +10,7 @@ var userSchema = new Schema({
 	password: {type: String},
 	role: {type: String, enum: ["admin", "employee", "manager"]},
 	location: {type: String},
-	projects: [ ProjectSchema ]
+	projects: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 });
 
 userSchema.pre('save', function(next) {
