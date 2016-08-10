@@ -2,13 +2,15 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
 var q = require('q');
+const ProjectSchema = require('./Project').schema;
 
 var userSchema = new Schema({
 	name: {type: String},
 	email: {type: String},
 	password: {type: String},
-	// role: {type: String, enum: ["admin", "employee"]},
-	location: {type: String}
+	role: {type: String, enum: ["admin", "employee", "manager"]},
+	location: {type: String},
+	projects: [ ProjectSchema ]
 });
 
 userSchema.pre('save', function(next) {

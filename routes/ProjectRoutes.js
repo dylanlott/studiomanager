@@ -1,8 +1,8 @@
 module.exports = function(){
-  var express = require('express');
-  var app = express();
-  var project = require('../controllers/ProjectCtrl.js');
-  var user = require('../controllers/UserCtrl.js'); 
+  const express = require('express');
+  const app = express();
+  const project = require('../controllers/ProjectCtrl.js');
+  const user = require('../controllers/UserCtrl.js');
 
   // Prefixed by '/project'
   app.all('*', user.requireAuth);

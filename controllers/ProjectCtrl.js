@@ -4,6 +4,10 @@ var Project = require('../models/Project.js')
 module.exports = {
 
 	add: function(req, res){
+		if(Project.findOne({name: req.body.name})){
+			res.json({"message":"Project with that name already exists."}).end();
+		}
+
 		var newProject = new Project(req.body);
 		console.log("req user project ctrl", req.user);
 		newProject.project_lead = req.user._id;
@@ -21,7 +25,7 @@ module.exports = {
 	list: function(req, res){
 		Project
 			.find({owner: req.body._id})
-			.exec()
+			.populate('project_lead engineers owner')
 			.then(function(data, err){
 				if(err){
 					console.log("error getting projects", err);
