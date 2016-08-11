@@ -11,6 +11,10 @@ const cookieParser = require('cookie-parser');
 const bson = require('bson');
 const app = express();
 const router = express.Router();
+const helmet = require('helmet');
+
+//Security Setup
+app.use(helmet());
 
 //Middleware
 app.use(cors());

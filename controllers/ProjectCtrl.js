@@ -20,8 +20,8 @@ module.exports = {
 					{ _id: user_id },
 					{$push: {projects: newProject}},
 					function(data, delta) {
-						console.log("Delta: ", delta)
-						console.log("User updated to: ", data)
+						console.log("Delta: ", delta);
+						console.log("User updated to: ", data);
 					}
 				)
 
@@ -32,15 +32,10 @@ module.exports = {
 
 	list: function(req, res){
 		Project
-			.find({owner: req.body._id})
-			.populate('project_lead engineers owner')
-			.then(function(data, err){
-				if(err){
-					console.log("error getting projects", err);
-					return res.status(500).end();
-				}else{
-					res.status(200).json(data).end();
-				}
+			.find({ owner: req.user._id })
+			.exec((err, data) => {
+				console.log(data);
+				res.status(200).json(data).end();
 			});
 	},
 
@@ -48,8 +43,6 @@ module.exports = {
 		console.log("List one Project Activated");
 		Project
 			.findOne({ _id: req.params.id })
-			.select('_id')
-			.exec()
 			.then(function(projects){
 				return res.status(200).json(projects).end();
 			})

@@ -1,7 +1,7 @@
 //Location.js
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var moment = require('moment'); 
+var moment = require('moment');
 
 var  trackModel = new Schema({
   name: {
@@ -13,7 +13,8 @@ var  trackModel = new Schema({
   }],
   finished: [{
     name: {type: String, unique: true}
-  }]
+  }],
+  created: { type: Date }
 });
 
 module.exports = mongoose.model('Track', trackModel);

@@ -1,23 +1,23 @@
-module.exports = function(){
-  var express = require('express');
-  var app = express();
+'use strict';
 
-  /// Prefix '/track' 
-  
+const track = require('../controllers/TrackCtrl');
+const express = require('express');
+const app = express();
+
+module.exports = function(){
+  /// Prefix '/track'
   app.get('/', function(req, res){
 
   });
   app.get('/:id', function(req, res){
-  	
+
   });
-  app.post('/', function(req, res){
-  	
-  });
+  app.post('/', track.createTrack);
   app.put('/:id', function(req, res){
-  	
+
   });
   app.delete('/:id', function(req, res){
-  	
+
   });
 
   return app;

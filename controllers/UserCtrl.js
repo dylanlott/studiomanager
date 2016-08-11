@@ -9,11 +9,13 @@ module.exports = {
       .then(function(user) {
         //if we found a user, it's a duplicate
         if (user) {
-          return res.status(400).json({message: "User with this email already exists."});
+          return res.status(400)
+            .json({message: "User with this email already exists."});
         }
         //if the user's password is too short ...
         if (req.body.password.length <= 4) {
-          return res.status(400).json({message: "Your password must be longer than 4 characters."});
+          return res.status(400)
+            .json({message: "Your password must be longer than 4 characters."});
         }
         //otherwise, create the user
         var user = new User(req.body);
@@ -43,7 +45,9 @@ module.exports = {
   getUser: function(req, res){
     console.log("getUser activated");
     if(req.isAuthenticated()){
-      return res.status(200).json({"_id":req.user._id, "email":req.user.email}).end();
+      return res.status(200)
+        .json({"_id":req.user._id, "email":req.user.email})
+        .end();
     }
     return res.status(403).json({"message":"Not logged in."}).end();
   },
