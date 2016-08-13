@@ -6,19 +6,11 @@ const app = express();
 
 module.exports = function(){
   /// Prefix '/track'
-  app.get('/', function(req, res){
-
-  });
-  app.get('/:id', function(req, res){
-
-  });
-  app.post('/', track.createTrack);
-  app.put('/:id', function(req, res){
-
-  });
-  app.delete('/:id', function(req, res){
-
-  });
+  app.get('/:project_id/', track.list);
+  app.get('/:project_id/:id', track.listOne);
+  app.post('/:project_id/', track.createTrack);
+  app.put('/:project_id/:id', track.updateTrack);
+  app.delete('/:id', track.deleteTrack);
 
   return app;
 }();

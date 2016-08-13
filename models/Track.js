@@ -8,13 +8,23 @@ var  trackModel = new Schema({
   	type: String,
   	required: true
   },
-  to_do: [{
-    name: {type: String, unique: true}
-  }],
-  finished: [{
-    name: {type: String, unique: true}
-  }],
-  created: { type: Date }
+  // to_do: [{
+  //   name: {
+  //     type: String
+  //   }
+  // }],
+  // finished: [{
+  //   name: {
+  //     type: String
+  //   }
+  // }],
+  created: {
+    type: Date
+  },
+  project: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project'
+  }
 });
 
 module.exports = mongoose.model('Track', trackModel);
