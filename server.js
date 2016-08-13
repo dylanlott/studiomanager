@@ -7,6 +7,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 const cookieParser = require('cookie-parser');
 const bson = require('bson');
 const app = express();

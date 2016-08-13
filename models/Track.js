@@ -8,16 +8,16 @@ var  trackModel = new Schema({
   	type: String,
   	required: true
   },
-  // to_do: [{
-  //   name: {
-  //     type: String
-  //   }
-  // }],
-  // finished: [{
-  //   name: {
-  //     type: String
-  //   }
-  // }],
+  to_do: [{
+    name: {
+      type: String
+    }
+  }],
+  finished: [{
+    name: {
+      type: String
+    }
+  }],
   created: {
     type: Date
   },
